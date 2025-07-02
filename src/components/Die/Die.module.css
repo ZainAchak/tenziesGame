@@ -1,0 +1,25 @@
+.Die{
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px rgb(2, 175, 255);
+    transition: 
+        background-color 0.2s ease,
+        box-shadow 0.1s ease,
+        transform 0.2s ease;
+    border: none;
+}
+
+.Die:hover{
+    background-color: rgb(230, 248, 255);
+    transform: rotate(10deg) scale(1.1);
+}
+
+.Die:active{
+    box-shadow: 0px 0px 1px rgb(255, 2, 2);
+}
