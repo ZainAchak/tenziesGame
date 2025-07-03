@@ -1,10 +1,11 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import Die from "../Die/Die";
 import styles from "./MainComp.module.css"
 import Confetti from 'react-confetti'
 import { useWindowSize } from 'react-use'
 
 function generateDiceRolls() {
+    console.log("initializtion function is called")
   const diceRolls = [];
   for (let i = 0; i < 10; i++) {
     const roll = Math.floor(Math.random() * 6) + 1;
@@ -21,8 +22,8 @@ function getaRandomDice() {
 
 
 export default function MainComp() {
-    const [dicesRandomNumber,setDicesRandomNumber] = useState(generateDiceRolls());
-    // const [newGame, setNewGame] = useState(false);
+    const [dicesRandomNumber,setDicesRandomNumber] = useState(generateDiceRolls);
+
     let buttonText = "Roll the Dice"
     const { width, height } = useWindowSize()
     const allHeld = dicesRandomNumber.every(die => die.isHeld === true)
@@ -30,23 +31,8 @@ export default function MainComp() {
     const allSameValue = allHeld && dicesRandomNumber.every(die => die.value === firstValue)
 
 
-    // if(allHeld) setNewGame(true)
     buttonText = allHeld ? (allSameValue ? "New Game" : "Wrong Sequence") : "Roll the Dice"
     if(allSameValue) console.log("Game won")
-    // useEffect(()=>{
-    //     const allHeld = dicesRandomNumber.every(die => die.isHeld === true);
-    //     if(allHeld){
-    //         const firstValue = dicesRandomNumber[0]?.value;
-    //         const allSameValue = dicesRandomNumber.every(die => die.value === firstValue);
-    //         setNewGame(true);
-
-    //         if(allSameValue){
-    //             buttonText.current.textContent = "New Game"
-    //         }else{
-    //             buttonText.current.textContent = "Not All Same Selected New Game"
-    //         }
-    //     }
-    // },[dicesRandomNumber])
 
     function changeOnHeld(id) {
         setDicesRandomNumber(prev => 
