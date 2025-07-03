@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {useState } from "react";
 import Die from "../Die/Die";
 import styles from "./MainComp.module.css"
 
@@ -21,23 +21,31 @@ function getaRandomDice() {
 export default function MainComp() {
 
     const [dicesRandomNumber,setDicesRandomNumber] = useState(generateDiceRolls());
-    const [newGame, setNewGame] = useState(false);
-    const buttonText = useRef()
+    // const [newGame, setNewGame] = useState(false);
+    let buttonText = "Roll the Dice"
 
-    useEffect(()=>{
-        const allHeld = dicesRandomNumber.every(die => die.isHeld === true);
-        if(allHeld){
-            const firstValue = dicesRandomNumber[0]?.value;
-            const allSameValue = dicesRandomNumber.every(die => die.value === firstValue);
-            setNewGame(true);
+    const allHeld = dicesRandomNumber.every(die => die.isHeld === true)
+    const firstValue = dicesRandomNumber[0]?.value
+    const allSameValue = allHeld && dicesRandomNumber.every(die => die.value === firstValue)
 
-            if(allSameValue){
-                buttonText.current.textContent = "New Game"
-            }else{
-                buttonText.current.textContent = "Not All Same Selected New Game"
-            }
-        }
-    },[dicesRandomNumber])
+
+    // if(allHeld) setNewGame(true)
+    buttonText = allHeld ? (allSameValue ? "New Game" : "Wrong Sequence") : "Roll the Dice"
+
+    // useEffect(()=>{
+    //     const allHeld = dicesRandomNumber.every(die => die.isHeld === true);
+    //     if(allHeld){
+    //         const firstValue = dicesRandomNumber[0]?.value;
+    //         const allSameValue = dicesRandomNumber.every(die => die.value === firstValue);
+    //         setNewGame(true);
+
+    //         if(allSameValue){
+    //             buttonText.current.textContent = "New Game"
+    //         }else{
+    //             buttonText.current.textContent = "Not All Same Selected New Game"
+    //         }
+    //     }
+    // },[dicesRandomNumber])
 
     function changeOnHeld(id) {
         setDicesRandomNumber(prev => 
@@ -62,11 +70,12 @@ export default function MainComp() {
     function startNewGame() {
         setDicesRandomNumber(generateDiceRolls())
         buttonText.current.textContent = "Roll the Dice"
-        setNewGame(false);
     }
 
     return(
         <main>
+            <h1 className={styles.title}>Tenzies</h1>
+            <p className={styles.instructions}>Roll until all dice are same. Click each die to freeze it at its current value between rolls.</p>
             <div className={styles.dieWrapper}>
                     {dicesRandomNumber.map((dice)=>(
                         <Die    key={dice.id} 
@@ -75,9 +84,8 @@ export default function MainComp() {
                     ))}
             </div>
             <button 
-                ref={buttonText}
-                onClick={newGame ? ()=>startNewGame() : ()=>buttonHandler()}>
-                Roll the Dice
+                onClick={allHeld ? ()=>startNewGame() : ()=>buttonHandler()}>
+                {buttonText}
             </button>
         </main>
     )

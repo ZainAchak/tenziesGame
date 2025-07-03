@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 main{
     background-color: #e4ebee;
     height: 450px;
@@ -17,6 +18,7 @@ main{
     grid-template-columns: repeat(5,1fr);
     gap: 20px;
     width: fit-content;
+    margin-bottom: 40px;
 }
 
 main > button{
@@ -41,4 +43,19 @@ main > button:hover{
 main > button:active{
     box-shadow: 0px 1px 0px rgba(23, 62, 107, 0.856);
     transform: scale(0.95);
+}
+
+.title{
+    font-size: 40px;
+    margin: 0;
+    color: rgb(48, 46, 46);
+}
+
+.instructions{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    margin-top: 0;
+    text-align: center;
+    margin: 0 2rem;
+    color: rgba(48, 46, 46, 0.959);
 }
