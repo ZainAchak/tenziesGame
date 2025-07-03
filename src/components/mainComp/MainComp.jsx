@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Die from "../Die/Die";
 import styles from "./MainComp.module.css"
 import Confetti from 'react-confetti'
@@ -32,7 +32,12 @@ export default function MainComp() {
 
 
     buttonText = allHeld ? (allSameValue ? "New Game" : "Wrong Sequence") : "Roll the Dice"
-    if(allSameValue) console.log("Game won")
+
+    useEffect(() => {
+        if (allSameValue) {
+            console.log("Game won");
+        }
+    }, [allSameValue]);
 
     function changeOnHeld(id) {
         setDicesRandomNumber(prev => 
