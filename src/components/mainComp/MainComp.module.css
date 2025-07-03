@@ -59,3 +59,31 @@ main > button:active{
     margin: 0 2rem;
     color: rgba(48, 46, 46, 0.959);
 }
+
+@media (max-width:400px) {
+    main{
+        padding: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width:350px) {
+    main{
+        background-color: #e4ebee;
+        height: 600px;
+        width: 300px;
+    }
+
+    .dieWrapper{
+        grid-template-columns: repeat(2,1fr);
+        gap: 20px;
+        column-gap: 50px;
+        width: fit-content;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    main > button{
+        padding: 10px 40px;
+    }
+}

@@ -6,8 +6,8 @@ body{
   margin: 0;
   background-color: #0B2434;
   padding: 20px;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 }
