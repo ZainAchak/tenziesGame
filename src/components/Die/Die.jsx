@@ -3,8 +3,7 @@ import styles from "./Die.module.css"
 export default function Die(props) {
     const isHeld = props.dice.isHeld;
     const value = props.dice.value;
-    const id = props.dice.id;
-    // isHeld ? ()=>{} : 
+    const id = props.dice.id; 
 
     return(
         <div onClick={()=>props.setFunction(id)} 
